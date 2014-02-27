@@ -40,7 +40,7 @@ int kernel_size = 3;
 char* window_name = "Edge Map";
 Mat src, src_gray, srcwe;
 Mat dst, detected_edges;
-int thresh = 40;
+int thresh = 30;
 int max_thresh = 255;
 RNG rng(12345);
 
@@ -69,11 +69,12 @@ Hierarchy hierarchy;
 void thresh_callback(int, void*);
 Mat MyBackgroundSubtraction(Mat background, Mat current);
 Mat temp1, temp2, img1, img2;
+int index = 0;
 
 int main()
 {
-
-	namedWindow("Frame");
+	// Bennung der Fenster
+	namedWindow("Frame"); 
 	namedWindow("FG Mask MOG");
 	namedWindow("FG Mask MOG 2");
 	src = imread("vlcsnap-2014-01-09-10h48m55s164.png", 1);
@@ -82,14 +83,14 @@ int main()
 		cout << "Bild wurde nicht geladen";
 	}
 	//create Background Subtractor objects
-	pMOG = new BackgroundSubtractorMOG(); //MOG approach
-	pMOG2 = new BackgroundSubtractorMOG2(); //MOG2 approach
+	//pMOG = new BackgroundSubtractorMOG(); //MOG approach
+	//pMOG2 = new BackgroundSubtractorMOG2(); //MOG2 approach
 	//processImages("C:\\Users\\Christopher\\Desktop\\111_png\\111_png\\input\\428.png");
-	processVideo("20131004_14-16-24.asf");
+	processVideo("20131004_14-16-24.asf"); // Funktionsaufruf mit Namens¸bergabe auf VideoFileName
 	//processVideo("C:\\Users\\Christopher\\Desktop\\Bilder\\Video_001.avi");
 
 	//destroy GUI windows
-	destroyAllWindows();
+	destroyAllWindows(); // Schlieﬂt alle Fenster
 	return EXIT_SUCCESS;
 
 
@@ -97,73 +98,16 @@ int main()
 
 
 
-	waitKey(0);
+	waitKey(0); 
 
 	//cout << A << endl;
 	//system("pause");
 	return 0;
 }
 
-
-void removePepperNoise(cv::Mat &mask)
-{
-	for (int y = 2; y < mask.rows - 2; y++) {
-		uchar *pUp2 = mask.ptr(y - 2);
-		uchar *pUp1 = mask.ptr(y - 1);
-		uchar *pThis = mask.ptr(y);
-		uchar *pDown1 = mask.ptr(y + 1);
-		uchar *pDown2 = mask.ptr(y + 2);
-		pThis += 2;
-		pUp1 += 2;
-		pUp2 += 2;
-		pDown1 += 2;
-		pDown2 += 2;
-
-		for (int x = 2; x < mask.cols - 2; x++) {
-			uchar value = *pThis; // Get this pixel value (0 or 255). // Check if this is a black pixel that is surrounded by white pixels
-			if (value == 0) {
-				bool above, left, below, right, surroundings;
-				above = *(pUp2 - 2) && *(pUp2 - 1) && *(pUp2) && *(pUp2 + 1) && *(pUp2 + 2);
-				left = *(pUp1 - 2) && *(pThis - 2) && *(pDown1 - 2);
-				below = *(pDown2 - 2) && *(pDown2 - 1) && *(pDown2) && *(pDown2 + 1) && *(pDown2 + 2);
-				right = *(pUp1 + 2) && *(pThis + 2) && *(pDown1 + 2);
-				surroundings = above && left && below && right;
-				if (surroundings == true) {
-					// Fill the whole 5x5 block as white. Since we know
-					// the 5x5 borders are already white, we just need to
-					// fill the 3x3 inner region.
-					*(pUp1 - 1) = 255;
-					*(pUp1 + 0) = 255;
-					*(pUp1 + 1) = 255;
-					*(pThis - 1) = 255;
-					*(pThis + 0) = 255;
-					*(pThis + 1) = 255;
-					*(pDown1 - 1) = 255;
-					*(pDown1 + 0) = 255;
-					*(pDown1 + 1) = 255;
-					// Since we just covered the whole 5x5 block with
-					// white, we know the next 2 pixels won't be black,
-					// so skip the next 2 pixels on the right.
-					pThis += 2;
-					pUp1 += 2;
-					pUp2 += 2;
-					pDown1 += 2;
-					pDown2 += 2;
-				}
-			}
-			// Move to the next pixel on the right.
-			pThis++;
-			pUp1++;
-			pUp2++;
-			pDown1++;
-			pDown2++;
-		}
-	}
-}
-
 void processVideo(char* videoFilename) {
 	//create the capture object
-	VideoCapture capture(videoFilename);
+	VideoCapture capture(videoFilename); // Verbingung erstellen zum Video
 	if (!capture.isOpened()){
 		//error in opening the video input
 		cerr << "Unable to open video file: " << videoFilename << endl;
@@ -171,7 +115,7 @@ void processVideo(char* videoFilename) {
 	}
 	int i = 0;
 	//read input data. ESC or 'q' for quitting
-	while ((char)keyboard != 'q' && (char)keyboard != 27){
+	while ((char)keyboard != 'q' && (char)keyboard != 27){ 
 		//read the current frame
 		if (!capture.read(frame)) {
 			cerr << "Unable to read next frame." << endl;
@@ -179,10 +123,20 @@ void processVideo(char* videoFilename) {
 			exit(EXIT_FAILURE);
 		}
 
-		absdiff(frame, src, temp1);
+		if(i = 0){
+			oldframe = src;
+			absdiff(frame, oldframe, temp1);
+		}
+		else if(i == index)
+		{
+			oldframe = frame;
+			absdiff(frame, oldframe, temp1);
+			index = index + 12;
+		}
+
 		cvtColor(temp1, src_gray, CV_BGR2GRAY);
-		blur(src_gray, src_gray, Size(3, 3));
-		src_gray = src_gray > 30;
+		blur(src_gray, src_gray, Size(3, 3)); // ? blur
+		src_gray = src_gray > 30; // Schwarz Weiﬂ Fenster erzeugen 
 		Mat erodeElement = getStructuringElement(MORPH_RECT, Size(5, 5));
 		//dilate with larger element so make sure object is nicely visible
 		Mat dilateElement = getStructuringElement(MORPH_RECT, Size(8, 8));
@@ -191,7 +145,7 @@ void processVideo(char* videoFilename) {
 
 		
 		dilate(src_gray, src_gray, dilateElement);
-		/// Create Window
+		// Create Window
 		char* source_window = "Source";
 		//	namedWindow(source_window, CV_WINDOW_AUTOSIZE);
 		//	imshow(source_window, diff);
@@ -200,7 +154,6 @@ void processVideo(char* videoFilename) {
 		thresh_callback(0, 0);
 		imshow("Grey", src_gray);
 		keyboard = waitKey(30);
-		oldframe = diff;
 		i++;
 	}
 	//delete capture object
@@ -253,7 +206,6 @@ void thresh_callback(int, void*)
 	}
 
 	/// Draw contours + rotated rects + ellipses
-	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
 	for (int i = 0; i < contours.size(); i++)
 	{
 		if (contours[i].size() > 60 && contours[i].size() <800)
@@ -274,5 +226,6 @@ void thresh_callback(int, void*)
 	/// Show in a window
 	namedWindow("Contours", CV_WINDOW_AUTOSIZE);
 	imshow("Contours", frame);
+	imshow("Oldframe", oldframe);
 	imshow("Threshold", threshold_output);
 }

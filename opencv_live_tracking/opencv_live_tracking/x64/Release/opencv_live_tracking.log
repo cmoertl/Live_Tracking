@@ -1,15 +1,16 @@
-﻿Build started 26.02.2014 12:59:11.
-     1>Project "C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\opencv_live_tracking\opencv_live_tracking.vcxproj" on node 2 (Build target(s)).
+﻿Der Buildvorgang wurde am 26.02.2014 17:05:16 gestartet.
+     1>Projekt "C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\opencv_live_tracking\opencv_live_tracking.vcxproj" auf Knoten "2", Build Ziel(e).
+       Die Projektdatei enthält ToolsVersion="12.0". Dieses Toolset ist möglicherweise nicht bekannt oder nicht vorhanden. In diesem Fall können Sie das Problem möglicherweise beheben, indem Sie die entsprechende Version von MSBuild installieren. Oder für den Build wurde aufgrund der Richtlinie eine bestimmte ToolsVersion erzwungen. Das Projekt wird behandelt, als enthielte es ToolsVersion="4.0". Weitere Informationen finden Sie unter http://go.microsoft.com/fwlink/?LinkId=291333. 
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\OpenCV_2.4.8\opencv\build\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt Source.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /IC:\OpenCV_2.4.8\opencv\build\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt Source.cpp
          Source.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\x64\Release\opencv_live_tracking.exe" /NOLOGO /LIBPATH:C:\OpenCV_2.4.8\opencv\build\x64\vc12\lib opencv_calib3d248.lib opencv_contrib248.lib opencv_core248.lib opencv_features2d248.lib opencv_flann248.lib opencv_gpu248.lib opencv_highgui248.lib opencv_highgui248d.lib opencv_imgproc248.lib opencv_legacy248.lib opencv_ml248.lib opencv_nonfree248.lib opencv_objdetect248.lib opencv_photo248.lib opencv_stitching248.lib opencv_ts248.lib opencv_video248.lib opencv_videostab248.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\x64\Release\opencv_live_tracking.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\x64\Release\opencv_live_tracking.lib" /MACHINE:X64 x64\Release\Source.obj
-         Generating code
-         Finished generating code
-         opencv_live_tracking.vcxproj -> C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\x64\Release\opencv_live_tracking.exe
-     1>Done Building Project "C:\Users\Christopher\Documents\Visual Studio 2013\Projects\opencv_live_tracking\opencv_live_tracking\opencv_live_tracking.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\x64\Release\opencv_live_tracking.exe" /NOLOGO /LIBPATH:C:\OpenCV_2.4.8\opencv\build\x64\vc12\lib opencv_calib3d248.lib opencv_contrib248.lib opencv_core248.lib opencv_features2d248.lib opencv_flann248.lib opencv_gpu248.lib opencv_highgui248.lib opencv_highgui248d.lib opencv_imgproc248.lib opencv_legacy248.lib opencv_ml248.lib opencv_nonfree248.lib opencv_objdetect248.lib opencv_photo248.lib opencv_stitching248.lib opencv_ts248.lib opencv_video248.lib opencv_videostab248.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\x64\Release\opencv_live_tracking.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\x64\Release\opencv_live_tracking.lib" /MACHINE:X64 x64\Release\Source.obj
+         Code wird generiert.
+         Codegenerierung ist abgeschlossen.
+         opencv_live_tracking.vcxproj -> C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\x64\Release\opencv_live_tracking.exe
+     1>Die Erstellung des Projekts "C:\Users\Dragan\Documents\GitHub\Live_Tracking\opencv_live_tracking\opencv_live_tracking\opencv_live_tracking.vcxproj" ist abgeschlossen, Build Ziel(e).
 
-Build succeeded.
+Build erfolgreich.
 
-Time Elapsed 00:00:02.71
+Verstrichene Zeit 00:00:01.75
